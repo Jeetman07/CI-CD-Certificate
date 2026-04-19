@@ -38,12 +38,12 @@ jobs:
         run: npm run test:e2e
 
       - name: Trigger Render deployment
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
 
   tag_release:
     needs: [simple_deployment_pipeline]
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
