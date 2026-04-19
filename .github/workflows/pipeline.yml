@@ -11,6 +11,7 @@ on:
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v6
 
@@ -37,5 +38,5 @@ jobs:
         run: npm run test:e2e
 
       - name: Trigger Render deployment
-        if: github.event_name == 'push'
+        if: ${{ github.event_name == 'push' }}
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
