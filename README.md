@@ -28,5 +28,4 @@ https://github.com/Jeetman07/phonebook-cicd
 ## Exercise 22
 
 This change is made to create a pull request for review.
-
 ok
