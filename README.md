@@ -23,4 +23,7 @@ Start by running `npm install` inside the project folder
 Phonebook CI/CD repository:
 https://github.com/Jeetman07/phonebook-cicd
 
+## Exercise 22
+
+This change is made to create a pull request for review.
 ok
