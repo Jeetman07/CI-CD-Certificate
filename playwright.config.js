@@ -1,3 +1,4 @@
+/* global module, require */
 const { defineConfig } = require('@playwright/test')
 
 module.exports = defineConfig({
