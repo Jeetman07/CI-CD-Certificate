@@ -18,4 +18,9 @@ Start by running `npm install` inside the project folder
 `npm run build` to make a production build  
 `npm run start-prod` to run your production build
 
+## Exercise 21
+
+Phonebook CI/CD repository:
+https://github.com/Jeetman07/phonebook-cicd
+
 ok
