@@ -58,3 +58,36 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+
+  notify:
+    needs: [simple_deployment_pipeline, tag_release]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send success notification
+        if: ${{ github.event_name == 'push' && needs.simple_deployment_pipeline.result == 'success' && (needs.tag_release.result == 'success' || needs.tag_release.result == 'skipped') }}
+        uses: Ilshidur/action-discord@0.3.2
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: |
+            ✅ Deployment successful!
+            Repository: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+            Message: ${{ github.event.head_commit.message }}
+            Workflow: ${{ github.workflow }}
+
+      - name: Send failure notification
+        if: ${{ needs.simple_deployment_pipeline.result == 'failure' || needs.tag_release.result == 'failure' }}
+        uses: Ilshidur/action-discord@0.3.2
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: |
+            ❌ Build failed!
+            Repository: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+            Message: ${{ github.event.head_commit.message }}
+            Workflow: ${{ github.workflow }}
+            Logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
