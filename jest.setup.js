@@ -1,3 +1,4 @@
+/* global require, global */
 const { TextEncoder, TextDecoder } = require('util')
 
 global.TextEncoder = TextEncoder
