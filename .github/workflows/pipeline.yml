@@ -66,7 +66,7 @@ jobs:
 
     steps:
       - name: Send success notification
-        if: ${{ github.event_name == 'push' && needs.simple_deployment_pipeline.result == 'success' && (needs.tag_release.result == 'success' || needs.tag_release.result == 'skipped') }}
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') && needs.simple_deployment_pipeline.result == 'success' && needs.tag_release.result == 'success' }}
         uses: Ilshidur/action-discord@0.3.2
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
