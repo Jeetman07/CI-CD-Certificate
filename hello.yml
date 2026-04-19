@@ -1,1 +1,13 @@
+name: Hello World Workflow
 
+# Trigger the workflow on every push
+on: [push]
+
+jobs:
+  say-hello:
+    # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World!"
