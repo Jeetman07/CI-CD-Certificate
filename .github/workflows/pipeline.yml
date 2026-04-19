@@ -90,4 +90,4 @@ jobs:
             Commit: ${{ github.sha }}
             Message: ${{ github.event.head_commit.message }}
             Workflow: ${{ github.workflow }}
-            Logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            Logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}s
